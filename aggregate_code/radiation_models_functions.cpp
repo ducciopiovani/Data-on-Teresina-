@@ -62,3 +62,44 @@ void Zone_Class:: calculate_flows_radiation( vector<Zone_Class>& zone, int O )
     }
     return ;
 }
+
+
+void Zone_Class :: calculate_flows_extended_radiation(vector <Zone_Class>& zone, int O , double alpha)
+{
+
+    int pi = zone[O].emp;
+    double Z = 0;
+
+    extended_radiation_flows.resize(cost_matrix.size(),0);
+    
+
+    for(int R = 0 ; R < zone[O].cost_matrix.size(); R ++)
+    {
+        int D  = zone[O].ord_neigh[R];
+        int ej = zone[D].emp;
+        
+        //  We have to start from 1 to avoid self-flow //
+        long int sij = 0 ;
+        for(int k = 1 ; k  < R ; k ++ )
+        {
+            int middle_zone = zone[O].ord_neigh[k];
+            sij += zone[middle_zone].emp;
+        }
+        
+        double aij = sij + pi;
+
+        double num =  ( pow((aij + ej), alpha ) - pow(aij, alpha) )*( pow(pi,alpha) + 1 );
+        double den =  ( pow(aij,alpha) + 1 ) * ( pow(aij + ej, alpha) + 1 ) ;
+        
+        extended_radiation_flows[D] = num / den ;
+        Z +=  num / den ;
+    
+    }
+    
+    for(int R = 0 ; R < zone[O].cost_matrix.size(); R ++)
+    {
+        extended_radiation_flows[R] *= (zone[O].pop/Z);
+    }
+    
+    return ;
+}

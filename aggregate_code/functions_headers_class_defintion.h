@@ -19,9 +19,12 @@ class Zone_Class
 {
     
     public:
-        // Indicators //
-        double  Acc_1 , Acc_2, Acc_3 ;
-    
+        // Accessibilties  //
+        double  Adbl; // Gravity Double Constrained
+        double  Asgl; // Gravity Single Constrained
+        double  Arad; // Radiation
+        double  Aext; // Extended Radiation
+            
 
         vector<double> double_gravity_flows;
         vector<double> single_gravity_flows;
@@ -45,8 +48,7 @@ class Zone_Class
         void calculate_flows_gravity_double(vector<Zone_Class>& , int , double , vector <double>& ,vector<double>&) ;
         void calculate_flows_gravity_single(vector <Zone_Class>&, int , double , vector <double>&) ;
         void calculate_flows_radiation(vector <Zone_Class>&, int) ;
-        
-
+        void calculate_flows_extended_radiation(vector <Zone_Class>& , int , double );
 };
 
 class Flow_Data_Class

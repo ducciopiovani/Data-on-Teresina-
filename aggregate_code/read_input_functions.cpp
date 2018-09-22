@@ -27,7 +27,6 @@ void read_population_employment(vector <Zone_Class>& zone, string file_path )
     return ;
 }
 
-
 void read_cost_matrix(vector <Zone_Class>& zone, string file_path )
 {
     
@@ -48,4 +47,19 @@ void read_cost_matrix(vector <Zone_Class>& zone, string file_path )
     
     
     return ;
+}
+
+void read_flow_data( vector <Flow_Data_Class> & flow)
+{
+    ifstream fP("../input_data/J_Work_bus_Network.txt");
+    double o,d,tod ; 
+    while(fP>>o>>d>>tod)
+    {
+        Flow_Data_Class f ; 
+        f.origin = o; 
+        f.destination = d; 
+        f.flow = tod;
+        flow.push_back(f);
+    }
+    return;
 }

@@ -1,4 +1,4 @@
-#include <iostream>
+ #include <iostream>
 #include <string>
 #include <fstream>
 #include <sstream>
@@ -21,9 +21,8 @@ int main()
     
     string cost_matrix_path, pop_emp_path ; 
 
-
-    pop_emp_path = "/Users/duccio/Desktop/Data-on-Teresina-/input_data/Population_Work.txt";
-    cost_matrix_path = "/Users/duccio/Desktop/Data-on-Teresina-/input_data/Cost_function.txt";
+    pop_emp_path     =  "../input_data/Population_Work.txt";
+    cost_matrix_path =  "../input_data/Cost_function.txt";
 
     
     vector <Zone_Class> zone;
@@ -42,7 +41,7 @@ int main()
     vector <double>  Bdouble(zone.size(),1);
 
     gravity_double_constrained_normalisation_terms(zone, Adouble, Bdouble, Beta_double); // Normalisation terms Double Constrained //
-    calculate_normalisation_terms_single(zone , Asingle, Beta_single);
+    gravity_single_constrained_normalisation_terms(zone , Asingle, Beta_single);
 
 
     for(int i = 0 ; i < zone.size() ; i ++ )
@@ -50,7 +49,7 @@ int main()
         
         /* Gravity Models */
         zone[i].calculate_flows_gravity_double(zone, i, Beta_double,  Adouble,  Bdouble);
-        zone[i].calculate_flows_gravity_single(zone, i, Beta_double,  Adouble);
+        zone[i].calculate_flows_gravity_single(zone, i, Beta_double,  Asingle);
 
         /*Orders the neighboring zones for the radiation models*/
         zone[i].rank_function();
@@ -61,7 +60,6 @@ int main()
         zone[i].calculate_flows_extended_radiation(zone, i, alpha);
 
     }
-
 
 
     /* I calculater the Accessibilities using the different models */
@@ -112,10 +110,6 @@ int main()
     fext.close();
 
 
-
-    
-
-    
     return 0;
 }
 

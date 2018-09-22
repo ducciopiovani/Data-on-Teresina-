@@ -60,11 +60,11 @@ class Flow_Data_Class
 };
 
 
-
+void read_flow_data( vector <Flow_Data_Class> & ) ; 
 void read_population_employment(vector <Zone_Class> &, string) ;
 void read_cost_matrix(vector <Zone_Class>& , string) ;
 void gravity_double_constrained_normalisation_terms(vector<Zone_Class>& , vector<double>& , vector<double>& , double ) ;
-void calculate_normalisation_terms_single(vector<Zone_Class>&  , vector<double>& , double ) ;
+void gravity_single_constrained_normalisation_terms(vector<Zone_Class>&  , vector<double>& , double ) ;
 
 
 

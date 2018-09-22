@@ -52,7 +52,6 @@ void gravity_double_constrained_normalisation_terms(vector<Zone_Class>& zone , v
             diffa += fabs(A[i]- Aold[i])   ;// calculating difference between successive values.
         }
 
-
         // Repeating forLoop on the B balancing factor //
         diff_b_old = diffb; // Storing the old value
         diffb = 0. ;
@@ -110,7 +109,7 @@ void Zone_Class::calculate_flows_gravity_double(vector <Zone_Class>& zone, int O
 
 
 
-void calculate_normalisation_terms_single(vector<Zone_Class>& zone , vector<double>& A, double Beta)
+void gravity_single_constrained_normalisation_terms(vector<Zone_Class>& zone , vector<double>& A, double Beta)
 {
      /*
         In this function the normalization terms of the single constrained gravity model are calculated.
@@ -185,26 +184,3 @@ void Zone_Class::calculate_flows_gravity_single(vector <Zone_Class>& zone, int O
 
 
 
-
-/*
-void Zone_Class :: check_constraints(vector <Zone_Class>& zone, int label)
-{
-    double cij = 0 ;
-    double cji = 0 ;
-    int i = label;
-    for(int j = 0 ; j < zone.size() ; j ++ )
-    {
-        cij += bus_flow[j];
-        cji += zone[j].bus_flow[i];
-    }
-        
-        
-    cout <<cij<<"\t"<< pop<<" \t "<< (cij - pop)/pop  <<endl;
-    cout <<cji<<"\t"<< emp<<" \t "<< (cji - emp )/emp <<endl ;
-    cout << "\n\n";
-
-    
-    
-    return ;
-}
-*/

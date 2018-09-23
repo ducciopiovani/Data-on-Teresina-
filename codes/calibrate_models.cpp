@@ -25,12 +25,11 @@ int main()
     string cost_matrix_path, pop_emp_path ; 
 
 
-    pop_emp_path     =  "../input_data/Population_Work.txt";
-    cost_matrix_path =  "../input_data/Cost_function.txt";
+    pop_emp_path     =  "../input_data/population_employment.txt" ;
+    cost_matrix_path =  "../input_data/OLD_travel_times.txt" ;
 
     vector <Zone_Class> zone;
     read_population_employment(zone, pop_emp_path ) ;
-    
     read_cost_matrix(zone, cost_matrix_path) ; 
 
     

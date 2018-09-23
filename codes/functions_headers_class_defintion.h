@@ -40,10 +40,8 @@ class Zone_Class
         double pop ; 
         double emp ;
         
-
         void  rank_function() ;
         void  ordered_neighbours() ;
-
         
         void calculate_flows_gravity_double(vector<Zone_Class>& , int , double , vector <double>& ,vector<double>&) ;
         void calculate_flows_gravity_single(vector <Zone_Class>&, int , double , vector <double>&) ;

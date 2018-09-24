@@ -42,7 +42,7 @@ int main()
     double Beta = 0.0001 ;
     double bmax = 0 ;
     double Imax = 0 ;
-    ofstream fI("sorensen_index_data/double_sorensen_index.csv");
+    ofstream fI("../sorensen_index_data/double_sorensen_index.csv");
     double sorensen_index ; 
     
     for(int b = 0 ; b < 20 ; b ++)

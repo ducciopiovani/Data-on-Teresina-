@@ -64,9 +64,12 @@ And similarly to calculate the accessbilities we first have to compile and then 
 
 `g++ calculate_accessibility.cpp radiation_models_functions.cpp gravity_models_functions.cpp read_input_functions.cpp -o compute`
 
-when exectuing the code we have to pass the values of the parameters of the models. The order is Beta_double_constrained, Beta_single_constrained, alpha_
+when exectuing the code we have to pass the values of the parameters of the models. The order is the Beta of the gravity double constrained, the Beta of the gravity single constraiend, and the alpha of the extended radiation. Which becomes
 
 `./compute 0.065 0.045 0.000001`
+
+
+
 
 
 

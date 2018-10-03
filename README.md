@@ -27,33 +27,32 @@ once in the repository.
 The codes are contained in the folder codes. Here is a short explanation of what every single file contains
 
 
- calculate_old_accessibility.cpp : In this code we first calculate the flows with the gravity and radiation models, and then use the flows 
+**calculate_old_accessibility.cpp**: In this code we first calculate the flows with the gravity and radiation models, and then use the flows 
                                    to calculate the accessibility to employment of every every zone. This codes uses the old travel times 
                                    as a cost function for the flows. The values of the parameters must durind the exeution of the code (A small example will follow).
 
-calculate_brt_accessibility.cpp :  Here we repeat the same calculation but with the predicted travel times after the brt introduction. 
+**calculate_brt_accessibility.cpp** :  Here we repeat the same calculation but with the predicted travel times after the brt introduction. 
 
-calibrate_models.cpp : In this file we calibrate the models that require calibration, using Sorensen's index. 
+**calibrate_models.cpp** : In this file we calibrate the models that require calibration, using Sorensen's index. 
 
-gravity_models_functions.cpp : In this file all the functions necessary to calculates the flows using the gravity models are contained. 
+**gravity_models_functions.cpp** : In this file all the functions necessary to calculates the flows using the gravity models are contained. 
 
-radiation_models_functions.cpp : In this file all the functions necessary to calculate the flows using the radiation models are contained.
+**radiation_models_functions.cpp** : In this file all the functions necessary to calculate the flows using the radiation models are contained.
 
-read_input_functions.cpp : All the functions to read the input data are found in this file. 
+**read_input_functions.cpp** : All the functions to read the input data are found in this file. 
 
 
 ## Input Data
 
 The input data for this project is found in the folder input_data. The files contained are :
 
-BRT_travel_times.txt : the predicted travel times from zone to zone after the introdution of the BRT corridors.This in the new cost matrix.
+**BRT_travel_times.txt** : the predicted travel times from zone to zone after the introdution of the BRT corridors.This in the new cost matrix.
 
-OLD_travel_times.txt : the travel times of the old transport network, before the introduction of the corridors.This in the old cost matrix.
+**OLD_travel_times.txt** : the travel times of the old transport network, before the introduction of the corridors.This in the old cost matrix.
 
-population_emplyment.txt : The population and employment population in every zone in Teresina. These are the origin and destinations. 
+**population_emplyment.txt** : The population and employment population in every zone in Teresina. These are the origin and destinations. 
 
-trips_from_survey.txt : The observed trips, measured with a survey, before the introduction of the BRT corridors. This data is 
-                        used for the calibration of the models' parameters. 
+**trips_from_survey.txt** : The observed trips, measured with a survey, before the introduction of the BRT corridors. This data is used for the calibration of the models' parameters. 
 
 
 

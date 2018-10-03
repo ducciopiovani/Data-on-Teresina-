@@ -52,7 +52,7 @@ The output data is contained in two folders: sorensen_index_data and accessbilit
 
 Here how to run the code. After having cloned the repository using the command 
 
-`git clone `
+`git clone https://github.com/ducciopiovani/Data-on-Teresina-.git `
 
 you should go to the codes folder `cd codes` and then compile the calibration codes with the command 
 

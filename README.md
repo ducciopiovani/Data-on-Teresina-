@@ -17,7 +17,7 @@ to run the .cpp code all you will need is to have installed on your local machin
 
 To run the juputet notebook for the visualisations you will need to install the libraries contained in the requirements.txt file, as
 
-`pip install requirements.txt`
+`pip install -r requirements.txt`
 
 once in the repository. 
 

@@ -9,7 +9,11 @@ http://rsos.royalsocietypublishing.org/content/5/9/171668
 
 ## Requirements 
 
-To run the .cpp code all you will need is to have installed on your local machine a standard C compiler. 
+After having cloned the repository using the command 
+
+`git clone https://github.com/ducciopiovani/Data-on-Teresina-.git `
+
+to run the .cpp code all you will need is to have installed on your local machine a standard C compiler. 
 
 To run the juputet notebook for the visualisations you will need to install the libraries contained in the requirements.txt file, as
 
@@ -60,11 +64,8 @@ The output data is contained in two folders: sorensen_index_data and accessbilit
 
 ## How to Run the code  
 
-Here how to run the code. After having cloned the repository using the command 
 
-`git clone https://github.com/ducciopiovani/Data-on-Teresina-.git `
-
-you should go to the codes folder `cd codes` and then compile the calibration codes with the command 
+You should go to the codes folder `cd codes` and then compile the calibration codes with the command 
 
 `g++ calibrate_models.cpp radiation_models_functions.cpp gravity_models_functions.cpp read_input_functions.cpp -o calibrate`
 

@@ -7,6 +7,16 @@ A link to the article is found here:
 
 http://rsos.royalsocietypublishing.org/content/5/9/171668
 
+## Requirements 
+
+To run the .cpp code all you will need is to have installed on your local machine a standard C compiler. 
+
+To run the juputet notebook for the visualisations you will need to install the libraries contained in the requirements.txt file, as
+
+`pip install requirements.txt`
+
+once in the repository. 
+
 
 ## Code Structure 
 
@@ -52,7 +62,7 @@ The output data is contained in two folders: sorensen_index_data and accessbilit
 
 Here how to run the code. After having cloned the repository using the command 
 
-`git clone `
+`git clone https://github.com/ducciopiovani/Data-on-Teresina-.git `
 
 you should go to the codes folder `cd codes` and then compile the calibration codes with the command 
 

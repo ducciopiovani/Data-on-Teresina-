@@ -34,6 +34,24 @@ void gravity_double_constrained_normalisation_terms(vector<Zone_Class>& zone , v
     double diffb = 0 , diffa = 0 , diff_a_old=0 ,diff_b_old=0 ;
     int cnt  = 0  ;
     do{
+        // Repeating forLoop on the B balancing factor //
+        diff_b_old = diffb; // Storing the old value
+        diffb = 0. ;
+        for(int i = 0 ; i < zone.size() ; i ++ )
+        {
+            double bi =0 ;
+            Bold[i] = B[i];
+            
+            for(int  k = 0 ; k < zone.size() ; k ++ )
+            //if(i!=k)//Excludes "Self Flow", Comment out the 'if' if needed
+            {
+                bi += zone[k].pop  * A[k] *exp(-Beta * zone[k].cost_matrix[i]);
+            }
+            B[i] = 1./bi ;
+            diffb += fabs(B[i]- Bold[i]);
+        }
+        cnt ++;
+       
         // Loop on the A balancing factor //
         diff_a_old = diffa;
         diffa = 0. ;
@@ -52,24 +70,7 @@ void gravity_double_constrained_normalisation_terms(vector<Zone_Class>& zone , v
             diffa += fabs(A[i]- Aold[i])   ;// calculating difference between successive values.
         }
 
-        // Repeating forLoop on the B balancing factor //
-        diff_b_old = diffb; // Storing the old value
-        diffb = 0. ;
-        for(int i = 0 ; i < zone.size() ; i ++ )
-        {
-            double bi =0 ;
-            Bold[i] = B[i];
-            
-            for(int  k = 0 ; k < zone.size() ; k ++ )
-            //if(i!=k)//Excludes "Self Flow", Comment out the 'if' if needed
-            {
-                bi += zone[k].pop  * A[k] *exp(-Beta * zone[k].cost_matrix[i]);
-            }
-            B[i] = 1./bi ;
-            diffb += fabs(B[i]- Bold[i]);
-        }
-        cnt ++;
-    
+        
     }while( (diffb > 1 || diffa > 1) && cnt < 100 ); 
 
     return ;
@@ -108,7 +109,6 @@ void Zone_Class::calculate_flows_gravity_double(vector <Zone_Class>& zone, int O
 }
 
 
-
 void gravity_single_constrained_normalisation_terms(vector<Zone_Class>& zone , vector<double>& A, double Beta)
 {
      /*
@@ -129,10 +129,6 @@ void gravity_single_constrained_normalisation_terms(vector<Zone_Class>& zone , v
 
         Outputs:  1) A : the vector of the values that assure the constrains. 
     */
-
-    double diffb = 0 , diffa = 0 , diff_a_old=0 , diff_b_old=0 ;
-    diff_a_old = diffa;
-    diffa = 0. ;
 
     // Loop on the A balancing factor //
     for(int i = 0 ; i < zone.size() ; i ++ )// Loops on all zones
@@ -155,26 +151,22 @@ void Zone_Class::calculate_flows_gravity_single(vector <Zone_Class>& zone, int O
         The equation is :
             
             Tij =  Ai Pi Ej e ^ -(Beta cij) 
-
         with:
-
             Ai = sum_j Ej e ^ -(Beta cij)  
-    
         Inputs:   1) zone: vector of class zone instances.
                   2) Origin : label of the Origin Zone. 
                   3) Beta: parameter for the exponential decay function.
                   4) A : vector of the normalization terms. 
 
         Outputs:  1) single_gravity_flows : flows from the specified Origin. 
-                 
-    */
+        */
 
     single_gravity_flows.resize(zone.size()) ;
-   
-
     for (int j = 0 ; j < zone.size(); j ++)
     {
         double Tb_ij = A[Origin] * pop * zone[j].emp* ( exp(-Beta * cost_matrix[j]) ) ;
+
+        
         single_gravity_flows[j] =  Tb_ij;
     }
     

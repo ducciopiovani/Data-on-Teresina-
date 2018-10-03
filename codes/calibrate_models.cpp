@@ -1,4 +1,4 @@
- #include <iostream>
+#include <iostream>
 #include <string>
 #include <fstream>
 #include <sstream>
@@ -12,7 +12,7 @@
 
 #include "functions_headers_class_defintion.h"
 
-
+using namespace :: std;
 double min(double a, double b)
 {
     if(a < b) return a;
@@ -32,12 +32,35 @@ int main()
     read_population_employment(zone, pop_emp_path ) ;
     read_cost_matrix(zone, cost_matrix_path) ; 
 
-    
+
+    /* ############ -- Print fraction of  employment per neighbours ########### */
+    double emp_tot = 0; // Total Employment // 
+    for(int i = 0 ; i < zone.size() ; i ++) // Calculate 
+    {   
+        int clean ;
+        do{
+            clean = zone[i].clean_travel_times();
+        }while(clean == 0);
+        zone[i].rank_function();
+        zone[i].ordered_neighbours();
+        emp_tot += zone[i].emp ;
+    }
+    ofstream fO("fraction_of_employmnet.txt");
+    for(int i = 0 ; i < zone.size() ; i ++)
+    {
+        double frac_emp = 0;
+        for(int k = 0 ; k < zone.size() ; k ++)
+        {   
+            int neigh = zone[i].ord_neigh[k];
+            frac_emp += zone[neigh].emp /emp_tot ;
+            fO <<  frac_emp <<"\t";
+        }fO << endl;
+    }
+
+
+
     vector <Flow_Data_Class> flow; 
     read_flow_data(flow);
-
-    std::cout << "\n\n" << std::endl;
-
     /* ############# --Calibrate Double Constrained-- ################# */
     double Beta = 0.0001 ;
     double bmax = 0 ;

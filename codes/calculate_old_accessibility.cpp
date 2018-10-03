@@ -43,11 +43,15 @@ int main(int argc, char* argv[])
 
 
     for(int i = 0 ; i < zone.size() ; i ++ )
-    {   
+    {  
+        int clean ;
+        do{
+            clean = zone[i].clean_travel_times();
+        }while(clean == 0);
         
         /* Gravity Models */
         zone[i].calculate_flows_gravity_double(zone, i, Beta_double,  Adouble,  Bdouble);
-        zone[i].calculate_flows_gravity_single(zone, i, Beta_double,  Asingle);
+        zone[i].calculate_flows_gravity_single(zone, i, Beta_single,   Asingle);
 
         /*Orders the neighboring zones for the radiation models*/
         zone[i].rank_function();
@@ -67,7 +71,7 @@ int main(int argc, char* argv[])
         zone[i].Asgl = 0;
         zone[i].Arad = 0;
         zone[i].Aext = 0;
-
+        zone[i].Atype_2 = 0;
       
         for(int k = 0 ; k < zone.size() ; k ++ )
         if(k != i)
@@ -76,40 +80,27 @@ int main(int argc, char* argv[])
             zone[i].Asgl  += zone[i].single_gravity_flows[k] / zone[i].cost_matrix[k];
             zone[i].Arad  += zone[i].radiation_flows[k] / zone[i].cost_matrix[k];
             zone[i].Aext  += zone[i].extended_radiation_flows[k] / zone[i].cost_matrix[k];
-        }
+            
+            zone[i].Atype_2 += zone[k].emp / zone[i].cost_matrix[k]; // type 2 
 
+        }
         zone[i].Adbl /= zone[i].pop;
         zone[i].Asgl /= zone[i].pop;
         zone[i].Arad /= zone[i].pop;
         zone[i].Aext /= zone[i].pop;
-    }
 
-    std :: cout << std ::endl;
+        
+        zone[i].Atype_2  /= zone.size() ;
+    }
 
     /* I print the accessibilities on file */
-    ofstream  fdbl("../accessibility/accessibility_bus_double.txt") ; 
-    ofstream  fsgl("../accessibility/accessibility_bus_single.txt") ;
-    ofstream  frad("../accessibility/accessibility_bus_radiation.txt") ;
-    ofstream  fext("../accessibility/accessibility_bus_extended.txt") ; 
-
-    fdbl << "Abus" << endl;
-    fsgl << "Abus"<< endl;
-    frad << "Abus" << endl;
-    fext << "Abus"<< endl;
+    ofstream  fAcc("../accessibility/accessibility_old.txt") ; 
+    fAcc << "Adbl\tAsngl\tArad\tAext\tA2"<< endl;
     for(int i = 0 ; i < zone.size() ; i ++ )
     {   
-        fdbl << zone[i].Adbl << endl;
-        fsgl << zone[i].Asgl << endl;
-        frad << zone[i].Arad << endl;
-        fext << zone[i].Aext << endl;
+        fAcc << zone[i].Adbl << "\t" <<zone[i].Asgl<< "\t" << zone[i].Arad << "\t" << zone[i].Aext<<"\t"<<zone[i].Atype_2 << endl;
     }
-
-    fdbl.close();
-    fsgl.close();
-    frad.close();
-    fext.close();
-
-
+    fAcc.close();
     return 0;
 }
 

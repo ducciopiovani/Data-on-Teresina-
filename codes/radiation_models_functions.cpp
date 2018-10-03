@@ -3,6 +3,23 @@
 
 
 
+int Zone_Class :: clean_travel_times()
+{
+    int clean = 1 ;
+    for(int k1 =0 ; k1 < cost_matrix.size() ; k1++)
+    {
+        for(int k2 = k1 +1 ; k2 < cost_matrix.size() ; k2++)
+        if(cost_matrix[k1] == cost_matrix[k2])
+        {
+            cost_matrix[k2] += cost_matrix[k2] / 500;
+            clean = 0 ;
+        }
+
+    }
+  
+    return clean ;
+}
+
 void Zone_Class:: rank_function()
 {
     rank.resize(cost_matrix.size());
@@ -10,10 +27,13 @@ void Zone_Class:: rank_function()
     {
         int rnk = 0 ;
         for(int k = 0 ; k < cost_matrix.size() ; k++)
+        {
             if(cost_matrix[i] > cost_matrix[k])
-                rnk ++;
-        rank[i] =rnk;
+            rnk ++;
+        }
+        rank[i] = rnk;
     }
+
     return ;
 }
 

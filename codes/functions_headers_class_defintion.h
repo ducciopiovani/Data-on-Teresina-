@@ -1,4 +1,4 @@
- #include<iostream>
+#include<iostream>
 #include<string>
 #include<fstream>
 #include<sstream>
@@ -8,8 +8,6 @@
 #include<stdlib.h>
 
 using namespace std;
-
-
 
 
 #define M 285987 // TOT Employment for normalisation factor //
@@ -24,8 +22,9 @@ class Zone_Class
         double  Asgl; // Gravity Single Constrained
         double  Arad; // Radiation
         double  Aext; // Extended Radiation
-            
+        double  Atype_2 ;
 
+         
         vector<double> double_gravity_flows;
         vector<double> single_gravity_flows;
         vector<double> radiation_flows;
@@ -42,8 +41,9 @@ class Zone_Class
         
         void  rank_function() ;
         void  ordered_neighbours() ;
+        int clean_travel_times(); 
         
-        void calculate_flows_gravity_double(vector<Zone_Class>& , int , double , vector <double>& ,vector<double>&) ;
+        void calculate_flows_gravity_double(vector<Zone_Class>& , int , double , vector <double>&, vector<double>&) ;
         void calculate_flows_gravity_single(vector <Zone_Class>&, int , double , vector <double>&) ;
         void calculate_flows_radiation(vector <Zone_Class>&, int) ;
         void calculate_flows_extended_radiation(vector <Zone_Class>& , int , double );

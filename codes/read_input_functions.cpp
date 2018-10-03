@@ -8,8 +8,9 @@ void read_population_employment(vector <Zone_Class>& zone, string file_path )
     
     ifstream fP(file_path);
     int var1, var2 ,label;
-    double cnt_p = 0 , cnt_e = 0;
-    double prop_cost = 3.55 ;
+
+
+    double prop_cost = 3.55 ; // this is the ratio between population and employment /
 
     string  header;
     std::getline(fP, header) ;
@@ -17,15 +18,12 @@ void read_population_employment(vector <Zone_Class>& zone, string file_path )
     while(fP>>label>>var1>>var2)
     {
         Zone_Class z ;
-        z.pop = var1 / prop_cost; // I take into account the working population //
+        z.pop = var1 / prop_cost ; // I take into account the working population //
         z.emp = var2 ;
-        
-        zone.push_back(z);
+        zone.push_back(z) ;
     } 
-    
     fP.close();
     
-
     return ;
 }
 
@@ -35,7 +33,6 @@ void read_cost_matrix(vector <Zone_Class>& zone, string file_path )
     ifstream fC(file_path) ;
     string header ;
     std::getline(fC, header) ;
-   
 
     for(int i = 0 ; i < zone.size() ; i ++ )
     {
@@ -43,7 +40,6 @@ void read_cost_matrix(vector <Zone_Class>& zone, string file_path )
     }
     int label, var1,var2;
     double bus ;
-
     while(fC>> var1 >> var2 >> bus)
     {
         zone[var1-1].cost_matrix[var2-1] = bus ;
@@ -65,9 +61,9 @@ void read_flow_data( vector <Flow_Data_Class> & flow)
     {
         Flow_Data_Class f ; 
 
-        f.origin = o; 
-        f.destination = d; 
-        f.flow = tod;
+        f.origin = o ; 
+        f.destination = d ; 
+        f.flow = tod ;
 
         flow.push_back(f);
     }

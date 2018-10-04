@@ -15,7 +15,7 @@ After having cloned the repository using the command
 
 to run the .cpp code all you will need is to have installed on your local machine a standard C compiler. 
 
-To run the juputet notebook for the visualisations you will need to install the libraries contained in the requirements.txt file, as
+To run the jupyter notebook for the visualisations you will need to install the libraries contained in the requirements.txt file, as
 
 `pip install -r requirements.txt`
 
@@ -29,13 +29,13 @@ The codes are contained in the folder codes. Here is a short explanation of what
 
 **calculate_old_accessibility.cpp**: In this code we first calculate the flows with the gravity and radiation models, and then use the flows 
                                    to calculate the accessibility to employment of every every zone. This codes uses the old travel times 
-                                   as a cost function for the flows. The values of the parameters must durind the exeution of the code (A small example will follow).
+                                   as a cost function for the flows. The values of the parameters must be given during the exeution of the code (A small example will follow).
 
 **calculate_brt_accessibility.cpp** :  Here we repeat the same calculation but with the predicted travel times after the brt introduction. 
 
-**calibrate_models.cpp** : In this file we calibrate the models that require calibration, using Sorensen's index. 
+**calibrate_models.cpp** : In this file we calibrate the models (that require calibration), using Sorensen's index. 
 
-**gravity_models_functions.cpp** : In this file all the functions necessary to calculates the flows using the gravity models are contained. 
+**gravity_models_functions.cpp** : In this file you will find all the functions necessary to calculate the flows using the gravity models. 
 
 **radiation_models_functions.cpp** : In this file all the functions necessary to calculate the flows using the radiation models are contained.
 
